@@ -1,0 +1,46 @@
+---
+title: "My first slides"
+subtitle: "Dataviz of Gapminder"
+format: revealjs
+editor: visual
+---
+
+## Loading data
+
+We will load the dataset "gapminder· included in the R package '{gapminder}'
+
+```{r}
+library(gapminder)
+gapminder
+
+```
+
+------------------------------------------------------------------------
+
+## Preprocess data
+
+We will filter just data from 2007
+
+```{r}
+#| echo: true
+library(dplyr)
+gapminder_2007 <- gapminder |> 
+  filter(year == 2007)
+
+```
+
+------------------------------------------------------------------------
+
+## Plot the data
+
+```{r}
+#| code-fold: true
+#| echo: true
+library(ggplot2)
+ggplot(gapminder_2007) + 
+  geom_point(aes(x = lifeExp, y = gdpPercap, colour =  continent)) + 
+  ggthemes::scale_color_colorblind() +
+  theme_minimal()
+```
+
+------------------------------------------------------------------------
